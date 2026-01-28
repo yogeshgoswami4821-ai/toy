@@ -4,214 +4,60 @@
 <meta charset="UTF-8">
 <title>ToyVerse</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
-}
-
-body{
-  background:linear-gradient(135deg,#cbb4ff,#f6efff);
-  min-height:100vh;
-}
-
-/* Navbar */
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:25px 60px;
-}
-
-.logo{
-  font-size:26px;
-  font-weight:700;
-}
-
-.navbar ul{
-  display:flex;
-  list-style:none;
-  gap:30px;
-}
-
-.navbar ul li{
-  cursor:pointer;
-  font-weight:500;
-}
-
-.btn{
-  background:#7b5cff;
-  color:white;
-  padding:10px 22px;
-  border-radius:20px;
-  border:none;
-  cursor:pointer;
-}
-
-/* Hero Card */
-.hero{
-  max-width:1200px;
-  margin:40px auto;
-  background:white;
-  border-radius:28px;
-  padding:60px;
-  display:grid;
-  grid-template-columns:1.1fr 1fr;
-  box-shadow:0 40px 80px rgba(0,0,0,.15);
-  perspective:1000px;
-}
-
-.hero-left h1{
-  font-size:42px;
-  line-height:1.2;
-}
-
-.hero-left p{
-  margin:20px 0;
-  color:#555;
-}
-
-.hero-left .actions{
-  display:flex;
-  gap:15px;
-}
-
-.hero-left .actions .btn-outline{
-  background:transparent;
-  border:2px solid #7b5cff;
-  color:#7b5cff;
-}
-
-/* 3D Plane */
-.hero-right{
-  position:relative;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.plane{
-  width:280px;
-  animation:float 3s ease-in-out infinite;
-  transform-style:preserve-3d;
-}
-
-@keyframes float{
-  0%{ transform:translateY(0) rotateY(0deg); }
-  50%{ transform:translateY(-20px) rotateY(15deg); }
-  100%{ transform:translateY(0) rotateY(0deg); }
-}
-
-/* Toy cards */
-.section{
-  max-width:1200px;
-  margin:60px auto;
-  padding:0 20px;
-}
-
-.section h2{
-  margin-bottom:30px;
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:30px;
-}
-
-.card{
-  background:white;
-  border-radius:22px;
-  padding:25px;
-  text-align:center;
-  box-shadow:0 20px 40px rgba(0,0,0,.1);
-  transition:.3s;
-}
-
-.card:hover{
-  transform:translateY(-10px) rotateX(5deg);
-}
-
-.card img{
-  width:120px;
-}
-
-.card h4{
-  margin:15px 0 5px;
-}
-
-.price{
-  color:#7b5cff;
-  font-weight:600;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:linear-gradient(135deg,#cbb4ff,#f6efff)}
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:25px 60px}
+.navbar ul{display:flex;gap:25px;list-style:none}
+.navbar a{text-decoration:none;color:black;font-weight:500}
+.btn{background:#7b5cff;color:white;padding:10px 22px;border-radius:20px}
+.hero{background:white;margin:40px auto;max-width:1200px;border-radius:28px;padding:60px;display:grid;grid-template-columns:1.1fr 1fr;box-shadow:0 40px 80px rgba(0,0,0,.15)}
+input{padding:10px;border-radius:20px;border:1px solid #ccc;width:240px}
+.actions{margin-top:20px;display:flex;gap:15px}
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
-  <div class="logo">ToyVerse 🧸</div>
+  <h2>ToyVerse 🧸</h2>
+
   <ul>
-    <li>Home</li>
-    <li>New Arrivals</li>
-    <li>Toys</li>
-    <li>More</li>
+    <li><a href="/">Home</a></li>
+    <li><a href="toys/">Toys</a></li>
+    <li><a href="demo/">Demo</a></li>
   </ul>
-  <button class="btn">Register</button>
+
+  <div style="display:flex;gap:10px">
+    <input placeholder="Search toys..." onkeydown="if(event.key==='Enter') search(this.value)">
+    <a class="btn" href="login/">Login</a>
+    <a class="btn" href="register/">Register</a>
+  </div>
 </div>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-left">
-    <h1>Best Kids Toys Online<br>Buying Platform</h1>
-    <p>Bring imagination to life with fun, safe and interactive toys designed for smart kids.</p>
-
+  <div>
+    <h1>Best Kids Toys Online Buying Platform</h1>
+    <p style="margin:20px 0;color:#555">
+      Bring imagination to life with fun, safe and interactive toys.
+    </p>
     <div class="actions">
-      <button class="btn">Explore Store</button>
-      <button class="btn btn-outline">Watch Demo</button>
+      <a class="btn" href="toys/">Explore Store</a>
+      <a class="btn" href="demo/">Watch Demo</a>
     </div>
   </div>
 
-  <div class="hero-right">
-    <!-- Simple 3D looking plane using CSS -->
-    <img src="https://i.imgur.com/6YV1R6X.png" class="plane" alt="Toy Plane">
-  </div>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Toy_airplane.svg/512px-Toy_airplane.svg.png"
+       style="width:280px;animation:float 3s infinite alternate">
 </div>
 
-<!-- TOYS -->
-<div class="section">
-  <h2>Best and Popular Toys</h2>
-
-  <div class="cards">
-    <div class="card">
-      <img src="https://i.imgur.com/8Km9tLL.png">
-      <h4>High Speed Train</h4>
-      <p class="price">₹999</p>
-    </div>
-
-    <div class="card">
-      <img src="https://i.imgur.com/6YV1R6X.png">
-      <h4>Remote Control Plane</h4>
-      <p class="price">₹1999</p>
-    </div>
-
-    <div class="card">
-      <img src="https://i.imgur.com/4AiXzf8.png">
-      <h4>Space Rocket</h4>
-      <p class="price">₹1499</p>
-    </div>
-  </div>
-</div>
+<script>
+function search(q){
+  location.href = "search/?q=" + encodeURIComponent(q);
+}
+</script>
 
 </body>
 </html>

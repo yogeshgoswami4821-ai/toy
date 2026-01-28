@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard | ToyVerse</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <h2>Admin Dashboard</h2>
+  <a href="index.html" class="btn">Logout</a>
+</header>
+
+<section class="dashboard">
+
+  <h3>Add New Toy</h3>
+  <input id="name" placeholder="Toy name">
+  <input id="price" placeholder="Price">
+  <input id="image" placeholder="Image URL">
+  <button onclick="addToy()">Add Toy</button>
+
+  <h3>All Toys</h3>
+  <div id="list" class="grid"></div>
+
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

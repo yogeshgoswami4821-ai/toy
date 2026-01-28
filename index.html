@@ -24,27 +24,12 @@ body{
   padding:22px 60px;
 }
 
-.logo{
-  font-size:28px;
-  font-weight:700;
-}
+.logo{font-size:28px;font-weight:700}
 
-.nav-links{
-  display:flex;
-  gap:30px;
-}
+.nav-links{display:flex;gap:30px}
+.nav-links a{text-decoration:none;color:#222;font-weight:500}
 
-.nav-links a{
-  text-decoration:none;
-  color:#222;
-  font-weight:500;
-}
-
-.right{
-  display:flex;
-  gap:14px;
-  align-items:center;
-}
+.right{display:flex;gap:14px;align-items:center}
 
 .search{
   padding:12px 20px;
@@ -61,15 +46,8 @@ body{
   font-weight:600;
 }
 
-.primary{
-  background:#6c55ff;
-  color:white;
-}
-
-.outline{
-  background:white;
-  color:#6c55ff;
-}
+.primary{background:#6c55ff;color:white}
+.outline{background:white;color:#6c55ff}
 
 /* ================= HERO ================= */
 .hero{
@@ -99,34 +77,15 @@ body{
   letter-spacing:2px;
 }
 
-.hero h1{
-  font-size:60px;
-  line-height:1.05;
-}
-
-.hero h1 span{
-  display:block;
-  color:#ff0000;
-  margin-top:10px;
-}
-
-.hero p{
-  margin:26px 0;
-  font-size:17px;
-  color:#555;
-}
+.hero h1{font-size:60px;line-height:1.05}
+.hero h1 span{display:block;color:#ff0000;margin-top:10px}
+.hero p{margin:26px 0;font-size:17px;color:#555}
 
 /* ================= CAR ================= */
-.car-wrap{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  perspective:1400px;
-}
+.car-wrap{display:flex;justify-content:center;align-items:center;perspective:1400px}
 
 .car{
-  width:380px;
-  height:230px;
+  width:380px;height:230px;
   background:linear-gradient(135deg,#111,#444);
   border-radius:30px;
   transform:rotateY(-30deg) rotateX(10deg);
@@ -142,16 +101,12 @@ body{
 }
 
 .wheel{
-  width:84px;
-  height:84px;
-  background:#111;
-  border-radius:50%;
+  width:84px;height:84px;
+  background:#111;border-radius:50%;
   border:7px solid #00b7ff;
-  position:absolute;
-  bottom:-42px;
+  position:absolute;bottom:-42px;
   box-shadow:0 35px 60px rgba(0,0,0,.7);
 }
-
 .w1{left:36px}
 .w2{right:36px}
 
@@ -169,19 +124,10 @@ body{
   box-shadow:0 60px 140px rgba(0,0,0,.18);
 }
 
-#toy3d h2{
-  font-size:42px;
-}
+#toy3d h2{font-size:42px}
+#toy3d p{margin:20px 0;color:#555}
 
-#toy3d p{
-  margin:20px 0;
-  color:#555;
-}
-
-#canvasWrap{
-  display:flex;
-  justify-content:center;
-}
+#canvasWrap{display:flex;justify-content:center}
 </style>
 </head>
 
@@ -207,14 +153,8 @@ body{
 <!-- HERO -->
 <div class="hero">
   <div>
-    <h1>
-      Zoom Into Play
-      <span>UP TO 70% OFF</span>
-    </h1>
-    <p>
-      High-speed RC cars, stunt vehicles & action toys
-      built for pure fun and thrill.
-    </p>
+    <h1>Zoom Into Play <span>UP TO 70% OFF</span></h1>
+    <p>High-speed RC cars, stunt vehicles & action toys built for pure fun.</p>
     <button class="btn primary" onclick="go('toys/')">Shop Now →</button>
   </div>
 
@@ -229,10 +169,10 @@ body{
 <!-- 3D TOY SHOWCASE -->
 <div id="toy3d">
   <div>
-    <h2>Featured Toy</h2>
+    <h2>Featured Puzzle Cube</h2>
     <p>
-      Experience toys in interactive 360° view.
-      Move your mouse and explore the toy like a real showroom.
+      A classic brain-teasing puzzle cube shown in full 3D.
+      Move your mouse to rotate and explore it.
     </p>
     <button class="btn primary" onclick="go('toys/')">Explore Toys</button>
   </div>
@@ -250,44 +190,66 @@ function go(path){
   location.href = base() + path;
 }
 
-/* THREE.JS */
+/* ================= THREE.JS PUZZLE CUBE ================= */
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60,1,0.1,1000);
-camera.position.z = 3;
+camera.position.z = 6;
 
 const renderer = new THREE.WebGLRenderer({antialias:true,alpha:true});
 renderer.setSize(360,360);
 document.getElementById("canvasWrap").appendChild(renderer.domElement);
 
 /* Lights */
-scene.add(new THREE.AmbientLight(0xffffff,.7));
+scene.add(new THREE.AmbientLight(0xffffff,0.6));
 const light = new THREE.DirectionalLight(0xffffff,1);
-light.position.set(3,3,6);
+light.position.set(4,5,6);
 scene.add(light);
 
-/* Toy */
-const toy = new THREE.Mesh(
-  new THREE.BoxGeometry(1.6,1,0.8),
-  new THREE.MeshStandardMaterial({
-    color:0xff3c3c,
-    metalness:.6,
-    roughness:.25
-  })
-);
-scene.add(toy);
+/* Puzzle Cube Group */
+const cubeGroup = new THREE.Group();
+const colors = [
+  0xff0000, 0x00ff00, 0x0000ff,
+  0xffff00, 0xff8000, 0xffffff
+];
 
-/* Animate */
+const size = 0.9;
+const gap = 0.06;
+
+for(let x=-1;x<=1;x++){
+  for(let y=-1;y<=1;y++){
+    for(let z=-1;z<=1;z++){
+      const cube = new THREE.Mesh(
+        new THREE.BoxGeometry(size,size,size),
+        new THREE.MeshStandardMaterial({
+          color: colors[Math.floor(Math.random()*colors.length)],
+          roughness:0.25,
+          metalness:0.4
+        })
+      );
+      cube.position.set(
+        x*(size+gap),
+        y*(size+gap),
+        z*(size+gap)
+      );
+      cubeGroup.add(cube);
+    }
+  }
+}
+scene.add(cubeGroup);
+
+/* Animation */
 function animate(){
   requestAnimationFrame(animate);
-  toy.rotation.y += 0.01;
+  cubeGroup.rotation.y += 0.006;
+  cubeGroup.rotation.x += 0.004;
   renderer.render(scene,camera);
 }
 animate();
 
 /* Mouse Interaction */
 document.addEventListener("mousemove", e=>{
-  toy.rotation.y = e.clientX / window.innerWidth * Math.PI;
-  toy.rotation.x = e.clientY / window.innerHeight * Math.PI * 0.3;
+  cubeGroup.rotation.y = (e.clientX/window.innerWidth - 0.5) * Math.PI;
+  cubeGroup.rotation.x = (e.clientY/window.innerHeight - 0.5) * Math.PI * 0.6;
 });
 </script>
 

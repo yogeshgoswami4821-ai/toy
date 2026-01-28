@@ -74,10 +74,6 @@ body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
   gap:40px;align-items:center;
   box-shadow:0 60px 140px rgba(0,0,0,.18)
 }
-.controls button{
-  margin:8px;padding:10px 18px;border-radius:20px;
-  border:none;background:#6c55ff;color:white;cursor:pointer
-}
 </style>
 </head>
 
@@ -105,7 +101,9 @@ body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
   <div>
     <h1>Zoom Into Play <span>UP TO 70% OFF</span></h1>
     <p>High-speed RC cars, stunt vehicles & action toys built for pure fun.</p>
-    <button class="btn primary" onclick="buyToy()">Shop Now →</button>
+    <button class="btn primary" onclick="alert('Buy feature coming soon')">
+      Shop Now →
+    </button>
   </div>
 
   <div class="car-wrap">
@@ -120,33 +118,26 @@ body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
 <div id="toy3d">
   <div>
     <h2>Interactive Puzzle Cube</h2>
-    <p>Rotate cube faces like a real Rubik’s cube.</p>
+    <p>Rotate cube like a real Rubik’s cube.</p>
   </div>
   <div id="canvasWrap"></div>
 </div>
 
 <script>
-/* BUY BUTTON */
-function buyToy(){
-  alert("🧸 Toy added!\nPayment integration next step.");
-}
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(60,1,0.1,1000);
+camera.position.z=6;
 
-/* THREE JS */
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(60,1,0.1,1000);
-camera.position.z = 6;
-
-const renderer = new THREE.WebGLRenderer({antialias:true,alpha:true});
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
 renderer.setSize(360,360);
 document.getElementById("canvasWrap").appendChild(renderer.domElement);
 
 scene.add(new THREE.AmbientLight(0xffffff,.6));
-const dLight = new THREE.DirectionalLight(0xffffff,1);
-dLight.position.set(5,5,5); scene.add(dLight);
+const light=new THREE.DirectionalLight(0xffffff,1);
+light.position.set(5,5,5);scene.add(light);
 
-/* PUZZLE */
-const cubeGroup = new THREE.Group();
-const size = 0.9, gap = 0.06;
+const cubeGroup=new THREE.Group();
+const size=0.9,gap=0.06;
 const colors=[0xff0000,0x00ff00,0x0000ff,0xffff00,0xff8000,0xffffff];
 
 for(let x=-1;x<=1;x++)
@@ -154,9 +145,7 @@ for(let y=-1;y<=1;y++)
 for(let z=-1;z<=1;z++){
   const cube=new THREE.Mesh(
     new THREE.BoxGeometry(size,size,size),
-    new THREE.MeshStandardMaterial({
-      color:colors[Math.floor(Math.random()*6)]
-    })
+    new THREE.MeshStandardMaterial({color:colors[Math.random()*6|0]})
   );
   cube.position.set(x*(size+gap),y*(size+gap),z*(size+gap));
   cubeGroup.add(cube);

@@ -1,23 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>Register | ToyVerse</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-body{display:flex;justify-content:center;align-items:center;height:100vh;background:#eae4ff;font-family:Poppins}
-.card{background:white;padding:40px;border-radius:24px;width:340px}
-input,button{width:100%;padding:12px;margin:10px 0;border-radius:20px}
-button{background:#7b5cff;color:white;border:none}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{
+  background:linear-gradient(135deg,#cbb4ff,#f6efff);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.card{
+  background:white;
+  padding:40px;
+  width:380px;
+  border-radius:28px;
+  box-shadow:0 40px 80px rgba(0,0,0,.15);
+}
+
+h2{text-align:center;margin-bottom:20px}
+
+input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:20px;
+  border:1px solid #ddd;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:20px;
+  background:#7b5cff;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+p{text-align:center;margin-top:15px}
+a{text-decoration:none;color:#7b5cff;font-weight:500}
 </style>
 </head>
+
 <body>
 
 <div class="card">
-  <h2>Register</h2>
+  <h2>Create Account 🧸</h2>
+
   <input placeholder="Username">
   <input placeholder="Email">
-  <input placeholder="Password" type="password">
+  <input type="password" placeholder="Password">
+
   <button onclick="alert('Register demo')">Register</button>
+
+  <p>Already have an account? <a href="../login/">Login</a></p>
 </div>
 
 </body>

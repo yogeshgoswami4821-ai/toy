@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: Poppins, Arial;
-  background: #f4f1ff;
+  font-family: Arial, sans-serif;
+  background: #f3f0ff;
 }
 
 .navbar {
@@ -16,30 +16,28 @@ body {
   background: white;
   color: #6c4cff;
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
 }
 
-.big { padding: 14px 22px; }
-
 .hero {
-  padding: 80px;
   text-align: center;
+  padding: 80px 20px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   padding: 40px;
 }
 
 .card {
   background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0,0,0,.1);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .center {
@@ -62,4 +60,9 @@ button {
   color: white;
   border: none;
   border-radius: 6px;
+  cursor: pointer;
+}
+
+.panel {
+  padding: 40px;
 }

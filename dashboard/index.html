@@ -4,141 +4,76 @@
 <meta charset="UTF-8">
 <title>Dashboard | ToyVerse</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:#f3f3f3}
 
-body{
-  background:linear-gradient(135deg,#cbb4ff,#f6efff);
-  min-height:100vh;
-}
-
-/* Navbar */
-.navbar{
+.nav{
+  background:#232f3e;
+  color:white;
+  padding:20px 40px;
+  font-size:22px;
+  font-weight:700;
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  padding:25px 60px;
 }
 
-.logo{
-  font-size:26px;
-  font-weight:700;
-}
-
-.btn{
-  background:#7b5cff;
-  color:white;
-  padding:10px 22px;
-  border-radius:20px;
-  border:none;
-  cursor:pointer;
-}
-
-/* Panel */
-.panel{
-  max-width:1100px;
-  margin:40px auto;
+.container{
+  max-width:1200px;
+  margin:30px auto;
   padding:0 20px;
 }
 
 .card{
   background:white;
-  border-radius:28px;
-  padding:30px;
-  box-shadow:0 40px 80px rgba(0,0,0,.15);
-  margin-bottom:40px;
+  padding:25px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,.12);
+  margin-bottom:25px;
 }
 
-input{
+input,button{
   width:100%;
   padding:12px;
-  margin:10px 0;
-  border-radius:14px;
-  border:1px solid #ddd;
+  margin-top:10px;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:30px;
+button{
+  background:#ffd814;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="logo">Admin Dashboard 🧸</div>
-  <a href="../" class="btn">Home</a>
+<div class="nav">
+  <div>Admin Dashboard</div>
+  <a href="../" style="color:white;text-decoration:none">Home</a>
 </div>
 
-<div class="panel">
+<div class="container">
 
-  <!-- ADD TOY -->
   <div class="card">
-    <h3>Add Toy</h3>
-    <input id="name" placeholder="Toy Name">
-    <input id="price" placeholder="Price">
-    <input id="image" placeholder="Image URL">
-    <button class="btn" onclick="addToy()">Add Toy</button>
+    <h3>Add New Toy</h3>
+    <input placeholder="Toy Name">
+    <input placeholder="Price">
+    <input placeholder="Image URL (or local path)">
+    <button>Add Toy</button>
   </div>
 
-  <!-- TOY LIST -->
-  <div id="toylist" class="grid"></div>
+  <div class="card">
+    <h3>Dashboard Info</h3>
+    <p>Total Products: Demo Mode</p>
+    <p>Orders: Demo Mode</p>
+    <p>Status: Active</p>
+  </div>
 
 </div>
-
-<script>
-const API = "https://toy-backend-os0m.onrender.com/api/toys";
-
-// Load toys
-fetch(API)
-  .then(res => res.json())
-  .then(data => {
-    const list = document.getElementById("toylist");
-    list.innerHTML = "";
-
-    data.forEach(t => {
-      list.innerHTML += `
-        <div class="card" style="text-align:center">
-          <img src="${t.image}" width="120"><br><br>
-          <b>${t.name}</b>
-          <p>₹${t.price}</p>
-          <button class="btn" style="background:#ff4d4d"
-            onclick="deleteToy('${t._id}')">Delete</button>
-        </div>
-      `;
-    });
-  });
-
-// Add toy
-function addToy(){
-  fetch(API,{
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body:JSON.stringify({
-      name:name.value,
-      price:price.value,
-      image:image.value
-    })
-  }).then(()=>location.reload());
-}
-
-// Delete toy
-function deleteToy(id){
-  fetch(`${API}/${id}`,{ method:"DELETE" })
-    .then(()=>location.reload());
-}
-</script>
 
 </body>
 </html>

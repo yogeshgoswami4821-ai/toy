@@ -35,17 +35,16 @@ input{padding:10px;border-radius:20px;border:1px solid #ccc;width:240px}
   <h2>ToyVerse 🧸</h2>
 
   <ul>
-    <!-- FIXED HERE -->
-    <li><a href="./">Home</a></li>
-    <li><a href="toys/">Toys</a></li>
-    <li><a href="demo/">Demo</a></li>
+    <li><a href="#" onclick="go('')">Home</a></li>
+    <li><a href="#" onclick="go('toys/')">Toys</a></li>
+    <li><a href="#" onclick="go('demo/')">Demo</a></li>
   </ul>
 
   <div style="display:flex;gap:10px">
-    <input placeholder="Search toys..." 
-           onkeydown="if(event.key==='Enter') search(this.value)">
-    <a class="btn" href="login/">Login</a>
-    <a class="btn" href="register/">Register</a>
+    <input placeholder="Search toys..."
+           onkeydown="if(event.key==='Enter') go('search/?q='+encodeURIComponent(this.value))">
+    <a class="btn" href="#" onclick="go('login/')">Login</a>
+    <a class="btn" href="#" onclick="go('register/')">Register</a>
   </div>
 </div>
 
@@ -56,8 +55,8 @@ input{padding:10px;border-radius:20px;border:1px solid #ccc;width:240px}
       Bring imagination to life with fun, safe and interactive toys.
     </p>
     <div class="actions">
-      <a class="btn" href="toys/">Explore Store</a>
-      <a class="btn" href="demo/">Watch Demo</a>
+      <a class="btn" href="#" onclick="go('toys/')">Explore Store</a>
+      <a class="btn" href="#" onclick="go('demo/')">Watch Demo</a>
     </div>
   </div>
 
@@ -66,8 +65,13 @@ input{padding:10px;border-radius:20px;border:1px solid #ccc;width:240px}
 </div>
 
 <script>
-function search(q){
-  location.href = "search/?q=" + encodeURIComponent(q);
+function basePath(){
+  const parts = location.pathname.split("/");
+  return "/" + parts[1] + "/";
+}
+
+function go(path){
+  location.href = basePath() + path;
 }
 </script>
 

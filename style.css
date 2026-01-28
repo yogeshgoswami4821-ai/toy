@@ -1,35 +1,65 @@
 body {
   margin: 0;
-  font-family: Arial;
-  background: linear-gradient(135deg,#cbb4ff,#f4e8ff);
+  font-family: Poppins, Arial;
+  background: #f4f1ff;
 }
 
-header {
-  padding: 20px;
-  font-size: 24px;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: #6c4cff;
+  color: white;
 }
+
+.btn {
+  background: white;
+  color: #6c4cff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.big { padding: 14px 22px; }
 
 .hero {
-  display: flex;
-  justify-content: space-around;
-  padding: 40px;
+  padding: 80px;
+  text-align: center;
 }
 
-canvas {
-  width: 300px;
-  height: 300px;
-}
-
-#products {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
   gap: 20px;
   padding: 40px;
 }
 
 .card {
   background: white;
-  border-radius: 15px;
-  padding: 15px;
-  text-align: center;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.1);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #6c4cff;
+  color: white;
+  border: none;
+  border-radius: 6px;
 }

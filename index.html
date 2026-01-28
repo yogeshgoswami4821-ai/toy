@@ -10,124 +10,74 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
 
-body{
-  min-height:100vh;
-  background:linear-gradient(135deg,#cdbbff,#efe9ff);
-}
-
-/* ================= NAVBAR ================= */
 .navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:22px 60px;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 60px
 }
-
 .logo{font-size:28px;font-weight:700}
-
 .nav-links{display:flex;gap:30px}
 .nav-links a{text-decoration:none;color:#222;font-weight:500}
-
 .right{display:flex;gap:14px;align-items:center}
-
-.search{
-  padding:12px 20px;
-  border-radius:30px;
-  border:none;
-  width:240px;
-}
+.search{padding:12px 20px;border-radius:30px;border:none;width:240px}
 
 .btn{
-  padding:12px 28px;
-  border-radius:30px;
-  border:none;
-  cursor:pointer;
-  font-weight:600;
+  padding:12px 28px;border-radius:30px;border:none;
+  cursor:pointer;font-weight:600
 }
-
 .primary{background:#6c55ff;color:white}
 .outline{background:white;color:#6c55ff}
 
-/* ================= HERO ================= */
+/* HERO */
 .hero{
-  max-width:1200px;
-  margin:40px auto;
-  padding:90px;
+  max-width:1200px;margin:40px auto;padding:90px;
   border-radius:42px;
-  background:radial-gradient(circle at top right,#ffffff,#f1ecff 65%);
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  align-items:center;
-  position:relative;
-  overflow:hidden;
+  background:radial-gradient(circle at top right,#fff,#f1ecff 65%);
+  display:grid;grid-template-columns:1.2fr 1fr;
   box-shadow:0 70px 160px rgba(0,0,0,.2);
+  position:relative
 }
-
 .hero::after{
-  content:"SALE";
-  position:absolute;
-  top:28px;
-  right:-70px;
+  content:"SALE";position:absolute;top:28px;right:-70px;
   background:linear-gradient(135deg,#ff0000,#b30000);
-  color:white;
-  padding:14px 120px;
-  transform:rotate(45deg);
-  font-weight:700;
-  letter-spacing:2px;
+  color:#fff;padding:14px 120px;
+  transform:rotate(45deg);font-weight:700
 }
-
 .hero h1{font-size:60px;line-height:1.05}
-.hero h1 span{display:block;color:#ff0000;margin-top:10px}
-.hero p{margin:26px 0;font-size:17px;color:#555}
+.hero h1 span{display:block;color:red;margin-top:10px}
+.hero p{margin:26px 0;color:#555}
 
-/* ================= CAR ================= */
-.car-wrap{display:flex;justify-content:center;align-items:center;perspective:1400px}
-
+/* CAR */
+.car-wrap{display:flex;justify-content:center;align-items:center;perspective:1200px}
 .car{
-  width:380px;height:230px;
-  background:linear-gradient(135deg,#111,#444);
-  border-radius:30px;
+  width:360px;height:220px;background:linear-gradient(135deg,#111,#444);
+  border-radius:28px;position:relative;
   transform:rotateY(-30deg) rotateX(10deg);
-  box-shadow:0 90px 180px rgba(0,0,0,.55);
-  animation:floatCar 4s ease-in-out infinite;
-  position:relative;
+  animation:float 4s infinite ease-in-out
 }
-
-@keyframes floatCar{
-  0%{transform:rotateY(-30deg) rotateX(10deg) translateY(0)}
-  50%{transform:rotateY(-24deg) rotateX(8deg) translateY(-24px)}
-  100%{transform:rotateY(-30deg) rotateX(10deg) translateY(0)}
+@keyframes float{
+  50%{transform:rotateY(-24deg) rotateX(8deg) translateY(-20px)}
 }
-
 .wheel{
-  width:84px;height:84px;
-  background:#111;border-radius:50%;
-  border:7px solid #00b7ff;
-  position:absolute;bottom:-42px;
-  box-shadow:0 35px 60px rgba(0,0,0,.7);
+  width:80px;height:80px;border-radius:50%;
+  background:#111;border:7px solid #00b7ff;
+  position:absolute;bottom:-40px
 }
-.w1{left:36px}
-.w2{right:36px}
+.w1{left:30px} .w2{right:30px}
 
-/* ================= 3D SHOWCASE ================= */
+/* 3D */
 #toy3d{
-  max-width:1200px;
-  margin:90px auto;
-  padding:80px;
-  background:white;
-  border-radius:42px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  gap:40px;
-  box-shadow:0 60px 140px rgba(0,0,0,.18);
+  max-width:1200px;margin:80px auto;padding:80px;
+  background:white;border-radius:42px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:40px;align-items:center;
+  box-shadow:0 60px 140px rgba(0,0,0,.18)
 }
-
-#toy3d h2{font-size:42px}
-#toy3d p{margin:20px 0;color:#555}
-
-#canvasWrap{display:flex;justify-content:center}
+.controls button{
+  margin:8px;padding:10px 18px;border-radius:20px;
+  border:none;background:#6c55ff;color:white;cursor:pointer
+}
 </style>
 </head>
 
@@ -136,17 +86,15 @@ body{
 <!-- NAVBAR -->
 <div class="navbar">
   <div class="logo">NG Toys 🧸</div>
-
   <div class="nav-links">
     <a href="./">Home</a>
     <a href="toys/">Toys</a>
     <a href="demo/">Demo</a>
   </div>
-
   <div class="right">
     <input class="search" placeholder="Search toys...">
-    <button class="btn outline" onclick="go('login/')">Login</button>
-    <button class="btn primary" onclick="go('register/')">Register</button>
+    <button class="btn outline">Login</button>
+    <button class="btn primary">Register</button>
   </div>
 </div>
 
@@ -155,7 +103,7 @@ body{
   <div>
     <h1>Zoom Into Play <span>UP TO 70% OFF</span></h1>
     <p>High-speed RC cars, stunt vehicles & action toys built for pure fun.</p>
-    <button class="btn primary" onclick="go('toys/')">Shop Now →</button>
+    <button class="btn primary">Shop Now →</button>
   </div>
 
   <div class="car-wrap">
@@ -166,31 +114,25 @@ body{
   </div>
 </div>
 
-<!-- 3D TOY SHOWCASE -->
+<!-- PUZZLE CUBE -->
 <div id="toy3d">
   <div>
-    <h2>Featured Puzzle Cube</h2>
-    <p>
-      A classic brain-teasing puzzle cube shown in full 3D.
-      Move your mouse to rotate and explore it.
-    </p>
-    <button class="btn primary" onclick="go('toys/')">Explore Toys</button>
+    <h2>Interactive Puzzle Cube</h2>
+    <p>Rotate cube faces like a real Rubik’s cube.</p>
+
+    <div class="controls">
+      <button onclick="rotateFace('x',1)">Rotate Right</button>
+      <button onclick="rotateFace('x',-1)">Rotate Left</button>
+      <button onclick="rotateFace('y',1)">Rotate Top</button>
+      <button onclick="rotateFace('z',1)">Rotate Front</button>
+    </div>
   </div>
 
   <div id="canvasWrap"></div>
 </div>
 
 <script>
-/* ROUTING */
-function base(){
-  const p = location.pathname.split("/");
-  return "/" + p[1] + "/";
-}
-function go(path){
-  location.href = base() + path;
-}
-
-/* ================= THREE.JS PUZZLE CUBE ================= */
+/* THREE JS */
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60,1,0.1,1000);
 camera.position.z = 6;
@@ -199,57 +141,55 @@ const renderer = new THREE.WebGLRenderer({antialias:true,alpha:true});
 renderer.setSize(360,360);
 document.getElementById("canvasWrap").appendChild(renderer.domElement);
 
-/* Lights */
-scene.add(new THREE.AmbientLight(0xffffff,0.6));
-const light = new THREE.DirectionalLight(0xffffff,1);
-light.position.set(4,5,6);
-scene.add(light);
+scene.add(new THREE.AmbientLight(0xffffff,.6));
+const dLight = new THREE.DirectionalLight(0xffffff,1);
+dLight.position.set(5,5,5); scene.add(dLight);
 
-/* Puzzle Cube Group */
+/* PUZZLE */
 const cubeGroup = new THREE.Group();
-const colors = [
-  0xff0000, 0x00ff00, 0x0000ff,
-  0xffff00, 0xff8000, 0xffffff
-];
+const size = 0.9, gap = 0.06;
+const colors=[0xff0000,0x00ff00,0x0000ff,0xffff00,0xff8000,0xffffff];
 
-const size = 0.9;
-const gap = 0.06;
-
-for(let x=-1;x<=1;x++){
-  for(let y=-1;y<=1;y++){
-    for(let z=-1;z<=1;z++){
-      const cube = new THREE.Mesh(
-        new THREE.BoxGeometry(size,size,size),
-        new THREE.MeshStandardMaterial({
-          color: colors[Math.floor(Math.random()*colors.length)],
-          roughness:0.25,
-          metalness:0.4
-        })
-      );
-      cube.position.set(
-        x*(size+gap),
-        y*(size+gap),
-        z*(size+gap)
-      );
-      cubeGroup.add(cube);
-    }
-  }
+for(let x=-1;x<=1;x++)
+for(let y=-1;y<=1;y++)
+for(let z=-1;z<=1;z++){
+  const cube=new THREE.Mesh(
+    new THREE.BoxGeometry(size,size,size),
+    new THREE.MeshStandardMaterial({
+      color:colors[Math.floor(Math.random()*6)]
+    })
+  );
+  cube.position.set(x*(size+gap),y*(size+gap),z*(size+gap));
+  cubeGroup.add(cube);
 }
 scene.add(cubeGroup);
 
-/* Animation */
+/* FACE ROTATION */
+function rotateFace(axis,dir){
+  cubeGroup.children.forEach(c=>{
+    if(Math.abs(c.position[axis])>0.9){
+      c.position.applyAxisAngle(
+        axis==='x'?new THREE.Vector3(1,0,0):
+        axis==='y'?new THREE.Vector3(0,1,0):
+        new THREE.Vector3(0,0,1),
+        Math.PI/2*dir
+      );
+    }
+  });
+}
+
+/* ANIMATE */
 function animate(){
   requestAnimationFrame(animate);
-  cubeGroup.rotation.y += 0.006;
-  cubeGroup.rotation.x += 0.004;
+  cubeGroup.rotation.y+=0.004;
   renderer.render(scene,camera);
 }
 animate();
 
-/* Mouse Interaction */
-document.addEventListener("mousemove", e=>{
-  cubeGroup.rotation.y = (e.clientX/window.innerWidth - 0.5) * Math.PI;
-  cubeGroup.rotation.x = (e.clientY/window.innerHeight - 0.5) * Math.PI * 0.6;
+/* MOUSE ROTATE */
+document.addEventListener("mousemove",e=>{
+  cubeGroup.rotation.y=(e.clientX/window.innerWidth-0.5)*Math.PI;
+  cubeGroup.rotation.x=(e.clientY/window.innerHeight-0.5)*Math.PI*0.6;
 });
 </script>
 

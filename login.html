@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login | ToyVerse</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="center">
+
+<div class="card">
+  <h2>Admin Login</h2>
+  <input type="text" id="user" placeholder="Username">
+  <input type="password" id="pass" placeholder="Password">
+  <button onclick="login()">Login</button>
+</div>
+
+<script>
+function login(){
+  if(user.value === "admin" && pass.value === "admin"){
+    window.location = "dashboard.html";
+  } else {
+    alert("Wrong credentials");
+  }
+}
+</script>
+
+</body>
+</html>

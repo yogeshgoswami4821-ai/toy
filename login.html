@@ -6,19 +6,21 @@
 </head>
 <body class="center">
 
-<div class="card">
+<div class="card" style="width:360px">
   <h2>Admin Login</h2>
+
   <input id="u" placeholder="Username">
   <input id="p" type="password" placeholder="Password">
-  <button onclick="go()">Login</button>
+
+  <button class="btn" onclick="login()">Login</button>
 </div>
 
 <script>
-function go(){
-  if(u.value === "admin" && p.value === "admin"){
-    location.href = "../dashboard/";
+function login(){
+  if(u.value==="admin" && p.value==="admin"){
+    location.href="../dashboard/";
   } else {
-    alert("Wrong login");
+    alert("Invalid login");
   }
 }
 </script>

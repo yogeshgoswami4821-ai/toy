@@ -149,7 +149,8 @@ function go(path){
 async function buyToy(amount){
   try{
     const res = await fetch(
-      "https://YOUR-RENDER-URL/api/payment/create-order",
+      "https://toy-backend-os0m.onrender.com/api/payment/create-order"
+  
       {
         method:"POST",
         headers:{ "Content-Type":"application/json" },

@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>3D Toy Store</title>
+  <title>ToyVerse</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
+<header class="navbar">
   <h2>ToyVerse 🧸</h2>
+  <a href="login.html" class="btn">Login</a>
 </header>
 
 <section class="hero">
-  <div>
+  <div class="hero-text">
     <h1>Best Kids Toys Online</h1>
-    <p>3D animated toy experience</p>
+    <p>Fun • Safe • 3D Experience</p>
+    <a href="login.html" class="btn big">Go to Dashboard</a>
   </div>
-  <canvas id="toy3d"></canvas>
 </section>
 
-<section id="products"></section>
+<section id="products" class="grid"></section>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

@@ -2,95 +2,110 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Toys | ToyVerse</title>
+<title>New Arrivals in Toys | ToyVerse</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-body{background:linear-gradient(135deg,#cbb4ff,#f6efff);min-height:100vh}
 
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:25px 60px;
-}
-.logo{font-size:26px;font-weight:700}
-.btn{
-  background:#7b5cff;
-  color:white;
-  padding:10px 22px;
-  border-radius:20px;
-  text-decoration:none;
+body{
+  background:#f3f3f3;
 }
 
-.section{
-  max-width:1200px;
-  margin:40px auto;
+.header{
+  background:#ffd814;
+  padding:30px;
+  font-size:28px;
+  font-weight:700;
+}
+
+.container{
+  max-width:1300px;
+  margin:30px auto;
   padding:0 20px;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:30px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
 }
 
 .card{
   background:white;
-  border-radius:26px;
-  padding:25px;
-  text-align:center;
-  box-shadow:0 20px 40px rgba(0,0,0,.12);
+  padding:20px;
+  border-radius:8px;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
   transition:.3s;
 }
+
 .card:hover{
-  transform:translateY(-10px) scale(1.02);
+  transform:translateY(-6px);
 }
 
 .card img{
-  width:140px;
-  margin-bottom:15px;
+  width:100%;
+  height:180px;
+  object-fit:contain;
 }
+
+.card h4{
+  margin:12px 0 6px;
+  font-size:16px;
+}
+
 .price{
-  color:#7b5cff;
-  font-weight:600;
+  font-weight:700;
+  color:#b12704;
+}
+
+.back{
+  display:inline-block;
+  margin-bottom:20px;
+  text-decoration:none;
+  color:#007185;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="logo">ToyVerse 🧸</div>
-  <a href="../" class="btn">Home</a>
+<div class="header">
+  New arrivals in Toys
 </div>
 
-<!-- TOYS SECTION -->
-<div class="section">
-  <h2>All Toys</h2>
+<div class="container">
+
+  <a class="back" href="../">← Back to Home</a>
 
   <div class="grid">
+
     <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Toy_airplane.svg/512px-Toy_airplane.svg.png">
-      <h4>Remote Control Plane</h4>
-      <p class="price">₹1999</p>
+      <img src="../assets/toys/car.png" alt="Toy Car">
+      <h4>Remote Control Car</h4>
+      <p class="price">₹1,299</p>
     </div>
 
     <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Toy_train.svg/512px-Toy_train.svg.png">
+      <img src="../assets/toys/train.png" alt="Toy Train">
       <h4>High Speed Train</h4>
       <p class="price">₹999</p>
     </div>
 
     <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Toy_rocket.svg/512px-Toy_rocket.svg.png">
-      <h4>Space Rocket</h4>
-      <p class="price">₹1499</p>
+      <img src="../assets/toys/plane.png" alt="Toy Plane">
+      <h4>Flying Airplane</h4>
+      <p class="price">₹1,999</p>
     </div>
+
+    <div class="card">
+      <img src="../assets/toys/teddy.png" alt="Teddy Bear">
+      <h4>Soft Teddy Bear</h4>
+      <p class="price">₹699</p>
+    </div>
+
   </div>
 </div>
 

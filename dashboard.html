@@ -3,28 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard | ToyVerse</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
 <header class="navbar">
   <h2>Admin Dashboard</h2>
-  <a href="./index.html" class="btn">Home</a>
+  <a href="../" class="btn">Home</a>
 </header>
 
 <section class="panel">
   <h3>Add New Toy</h3>
 
-  <input type="text" id="name" placeholder="Toy Name">
-  <input type="number" id="price" placeholder="Price">
-  <input type="text" id="image" placeholder="Image URL">
-
+  <input id="name" placeholder="Toy Name">
+  <input id="price" placeholder="Price">
+  <input id="image" placeholder="Image URL">
   <button onclick="addToy()">Add Toy</button>
 
   <h3>All Toys</h3>
   <div id="list" class="grid"></div>
 </section>
 
-<script src="script.js"></script>
+<script src="../script.js"></script>
 </body>
 </html>

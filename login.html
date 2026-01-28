@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Login | ToyVerse</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -18,7 +19,7 @@ function login(){
   if(user.value === "admin" && pass.value === "admin"){
     window.location.href = "dashboard.html";
   } else {
-    alert("Wrong credentials");
+    alert("Wrong username or password");
   }
 }
 </script>

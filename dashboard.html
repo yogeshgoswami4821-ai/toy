@@ -8,17 +8,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
 body{
   background:linear-gradient(135deg,#cbb4ff,#f6efff);
   min-height:100vh;
 }
+
+/* Navbar */
 .navbar{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   padding:25px 60px;
 }
-.logo{font-size:26px;font-weight:700}
+
+.logo{
+  font-size:26px;
+  font-weight:700;
+}
+
 .btn{
   background:#7b5cff;
   color:white;
@@ -27,17 +41,22 @@ body{
   border:none;
   cursor:pointer;
 }
+
+/* Panel */
 .panel{
   max-width:1100px;
   margin:40px auto;
+  padding:0 20px;
 }
+
 .card{
   background:white;
-  border-radius:26px;
+  border-radius:28px;
   padding:30px;
   box-shadow:0 40px 80px rgba(0,0,0,.15);
-  margin-bottom:30px;
+  margin-bottom:40px;
 }
+
 input{
   width:100%;
   padding:12px;
@@ -45,6 +64,7 @@ input{
   border-radius:14px;
   border:1px solid #ddd;
 }
+
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
@@ -55,13 +75,15 @@ input{
 
 <body>
 
+<!-- NAVBAR -->
 <div class="navbar">
-  <div class="logo">Admin Dashboard</div>
+  <div class="logo">Admin Dashboard 🧸</div>
   <a href="../" class="btn">Home</a>
 </div>
 
 <div class="panel">
 
+  <!-- ADD TOY -->
   <div class="card">
     <h3>Add Toy</h3>
     <input id="name" placeholder="Toy Name">
@@ -70,10 +92,53 @@ input{
     <button class="btn" onclick="addToy()">Add Toy</button>
   </div>
 
+  <!-- TOY LIST -->
   <div id="toylist" class="grid"></div>
 
 </div>
 
-<script src="../toyscript.js"></script>
+<script>
+const API = "https://toy-backend-os0m.onrender.com/api/toys";
+
+// Load toys
+fetch(API)
+  .then(res => res.json())
+  .then(data => {
+    const list = document.getElementById("toylist");
+    list.innerHTML = "";
+
+    data.forEach(t => {
+      list.innerHTML += `
+        <div class="card" style="text-align:center">
+          <img src="${t.image}" width="120"><br><br>
+          <b>${t.name}</b>
+          <p>₹${t.price}</p>
+          <button class="btn" style="background:#ff4d4d"
+            onclick="deleteToy('${t._id}')">Delete</button>
+        </div>
+      `;
+    });
+  });
+
+// Add toy
+function addToy(){
+  fetch(API,{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({
+      name:name.value,
+      price:price.value,
+      image:image.value
+    })
+  }).then(()=>location.reload());
+}
+
+// Delete toy
+function deleteToy(id){
+  fetch(`${API}/${id}`,{ method:"DELETE" })
+    .then(()=>location.reload());
+}
+</script>
+
 </body>
 </html>

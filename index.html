@@ -16,7 +16,7 @@ body{
   background:linear-gradient(135deg,#cdbbff,#efe9ff);
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
 .navbar{
   display:flex;
   justify-content:space-between;
@@ -71,18 +71,19 @@ body{
   color:#6c55ff;
 }
 
-/* HERO SALE */
+/* ================= HERO ================= */
 .hero{
   max-width:1200px;
   margin:40px auto;
-  padding:80px;
-  border-radius:40px;
+  padding:90px;
+  border-radius:42px;
   background:radial-gradient(circle at top right,#ffffff,#f1ecff 65%);
   display:grid;
   grid-template-columns:1.2fr 1fr;
   align-items:center;
   position:relative;
-  box-shadow:0 70px 160px rgba(0,0,0,.18);
+  overflow:hidden;
+  box-shadow:0 70px 160px rgba(0,0,0,.2);
 }
 
 .hero::after{
@@ -99,7 +100,7 @@ body{
 }
 
 .hero h1{
-  font-size:58px;
+  font-size:60px;
   line-height:1.05;
 }
 
@@ -115,22 +116,61 @@ body{
   color:#555;
 }
 
-/* 3D SHOWCASE */
+/* ================= CAR ================= */
+.car-wrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  perspective:1400px;
+}
+
+.car{
+  width:380px;
+  height:230px;
+  background:linear-gradient(135deg,#111,#444);
+  border-radius:30px;
+  transform:rotateY(-30deg) rotateX(10deg);
+  box-shadow:0 90px 180px rgba(0,0,0,.55);
+  animation:floatCar 4s ease-in-out infinite;
+  position:relative;
+}
+
+@keyframes floatCar{
+  0%{transform:rotateY(-30deg) rotateX(10deg) translateY(0)}
+  50%{transform:rotateY(-24deg) rotateX(8deg) translateY(-24px)}
+  100%{transform:rotateY(-30deg) rotateX(10deg) translateY(0)}
+}
+
+.wheel{
+  width:84px;
+  height:84px;
+  background:#111;
+  border-radius:50%;
+  border:7px solid #00b7ff;
+  position:absolute;
+  bottom:-42px;
+  box-shadow:0 35px 60px rgba(0,0,0,.7);
+}
+
+.w1{left:36px}
+.w2{right:36px}
+
+/* ================= 3D SHOWCASE ================= */
 #toy3d{
   max-width:1200px;
-  margin:80px auto;
-  padding:70px;
+  margin:90px auto;
+  padding:80px;
   background:white;
-  border-radius:40px;
+  border-radius:42px;
   display:grid;
   grid-template-columns:1fr 1fr;
   align-items:center;
   gap:40px;
-  box-shadow:0 50px 120px rgba(0,0,0,.15);
+  box-shadow:0 60px 140px rgba(0,0,0,.18);
 }
 
 #toy3d h2{
-  font-size:40px;
+  font-size:42px;
 }
 
 #toy3d p{
@@ -172,12 +212,18 @@ body{
       <span>UP TO 70% OFF</span>
     </h1>
     <p>
-      High-speed RC cars, stunt vehicles & action toys built for pure fun.
+      High-speed RC cars, stunt vehicles & action toys
+      built for pure fun and thrill.
     </p>
     <button class="btn primary" onclick="go('toys/')">Shop Now →</button>
   </div>
 
-  <div></div>
+  <div class="car-wrap">
+    <div class="car">
+      <div class="wheel w1"></div>
+      <div class="wheel w2"></div>
+    </div>
+  </div>
 </div>
 
 <!-- 3D TOY SHOWCASE -->
@@ -185,10 +231,10 @@ body{
   <div>
     <h2>Featured Toy</h2>
     <p>
-      View our toys in interactive 360° 3D.
-      Drag your mouse and feel the showroom experience.
+      Experience toys in interactive 360° view.
+      Move your mouse and explore the toy like a real showroom.
     </p>
-    <button class="btn primary" onclick="go('toys/')">View Toys</button>
+    <button class="btn primary" onclick="go('toys/')">Explore Toys</button>
   </div>
 
   <div id="canvasWrap"></div>
@@ -219,7 +265,7 @@ const light = new THREE.DirectionalLight(0xffffff,1);
 light.position.set(3,3,6);
 scene.add(light);
 
-/* Toy Body */
+/* Toy */
 const toy = new THREE.Mesh(
   new THREE.BoxGeometry(1.6,1,0.8),
   new THREE.MeshStandardMaterial({

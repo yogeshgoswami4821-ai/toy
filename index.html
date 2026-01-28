@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>ToyVerse</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -13,7 +14,16 @@ body{background:linear-gradient(135deg,#cbb4ff,#f6efff)}
 .navbar ul{display:flex;gap:25px;list-style:none}
 .navbar a{text-decoration:none;color:black;font-weight:500}
 .btn{background:#7b5cff;color:white;padding:10px 22px;border-radius:20px}
-.hero{background:white;margin:40px auto;max-width:1200px;border-radius:28px;padding:60px;display:grid;grid-template-columns:1.1fr 1fr;box-shadow:0 40px 80px rgba(0,0,0,.15)}
+.hero{
+  background:white;
+  margin:40px auto;
+  max-width:1200px;
+  border-radius:28px;
+  padding:60px;
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  box-shadow:0 40px 80px rgba(0,0,0,.15)
+}
 input{padding:10px;border-radius:20px;border:1px solid #ccc;width:240px}
 .actions{margin-top:20px;display:flex;gap:15px}
 </style>
@@ -25,13 +35,15 @@ input{padding:10px;border-radius:20px;border:1px solid #ccc;width:240px}
   <h2>ToyVerse 🧸</h2>
 
   <ul>
-    <li><a href="/">Home</a></li>
+    <!-- FIXED HERE -->
+    <li><a href="./">Home</a></li>
     <li><a href="toys/">Toys</a></li>
     <li><a href="demo/">Demo</a></li>
   </ul>
 
   <div style="display:flex;gap:10px">
-    <input placeholder="Search toys..." onkeydown="if(event.key==='Enter') search(this.value)">
+    <input placeholder="Search toys..." 
+           onkeydown="if(event.key==='Enter') search(this.value)">
     <a class="btn" href="login/">Login</a>
     <a class="btn" href="register/">Register</a>
   </div>

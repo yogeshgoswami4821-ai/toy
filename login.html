@@ -9,19 +9,24 @@
 
 <div class="card">
   <h2>Admin Login</h2>
-  <input id="user" placeholder="Username">
-  <input id="pass" type="password" placeholder="Password">
-  <button onclick="login()">Login</button>
+
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+
+  <button id="loginBtn">Login</button>
 </div>
 
 <script>
-function login(){
-  if(user.value === "admin" && pass.value === "admin"){
-    window.location.href = "dashboard.html";
+document.getElementById("loginBtn").onclick = function () {
+  const u = document.getElementById("username").value;
+  const p = document.getElementById("password").value;
+
+  if (u === "admin" && p === "admin") {
+    window.location.href = "./dashboard.html";
   } else {
-    alert("Wrong username or password");
+    alert("Invalid login");
   }
-}
+};
 </script>
 
 </body>

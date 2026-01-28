@@ -1,25 +1,35 @@
 const API = "https://toy-backend-os0m.onrender.com/api/toys";
 
-// Load toys on home & dashboard
-fetch(API)
-  .then(res => res.json())
-  .then(data => {
-    const box = document.getElementById("products") || document.getElementById("list");
-    if(!box) return;
-    box.innerHTML = "";
-    data.forEach(t => {
-      box.innerHTML += `
-        <div class="card">
-          <img src="${t.image}" width="120"><br>
-          <b>${t.name}</b>
-          <p>₹${t.price}</p>
-        </div>
-      `;
-    });
-  });
+// Load toys safely
+document.addEventListener("DOMContentLoaded", () => {
+  const products = document.getElementById("products");
+  const list = document.getElementById("list");
 
-// Add toy
+  if (products || list) {
+    fetch(API)
+      .then(res => res.json())
+      .then(data => {
+        const box = products || list;
+        box.innerHTML = "";
+
+        data.forEach(t => {
+          box.innerHTML += `
+            <div class="card">
+              <img src="${t.image}" width="120"><br>
+              <b>${t.name}</b>
+              <p>₹${t.price}</p>
+            </div>
+          `;
+        });
+      })
+      .catch(err => console.error("API error:", err));
+  }
+});
+
+// Add toy (dashboard only)
 function addToy(){
+  if(!window.name) return;
+
   fetch(API,{
     method:"POST",
     headers:{ "Content-Type":"application/json" },
@@ -28,5 +38,5 @@ function addToy(){
       price: price.value,
       image: image.value
     })
-  }).then(()=>location.reload());
+  }).then(() => location.reload());
 }

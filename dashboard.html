@@ -6,22 +6,24 @@
 </head>
 <body>
 
-<header class="navbar">
-  <h2>Admin Dashboard</h2>
+<div class="navbar">
+  <div class="logo">Admin Dashboard</div>
   <a href="../" class="btn">Home</a>
-</header>
+</div>
 
-<section class="panel">
-  <h3>Add Toy</h3>
+<div class="panel">
 
-  <input id="name" placeholder="Toy Name">
-  <input id="price" placeholder="Price">
-  <input id="image" placeholder="Image URL">
-  <button onclick="addToy()">Add</button>
+  <div class="card" style="max-width:500px;margin-bottom:40px">
+    <h3>Add Toy</h3>
+    <input id="name" placeholder="Toy Name">
+    <input id="price" placeholder="Price">
+    <input id="image" placeholder="Image URL">
+    <button class="btn" onclick="addToy()">Add Toy</button>
+  </div>
 
-  <h3>All Toys</h3>
   <div id="list" class="grid"></div>
-</section>
+
+</div>
 
 <script src="../script.js"></script>
 </body>

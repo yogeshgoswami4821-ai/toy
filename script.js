@@ -11,20 +11,22 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(data => {
       const box = products || list;
       box.innerHTML = "";
+
       data.forEach(t => {
         box.innerHTML += `
           <div class="card">
             <img src="${t.image}" width="120"><br>
             <b>${t.name}</b>
             <p>₹${t.price}</p>
+            ${list ? `<button onclick="deleteToy('${t._id}')">Delete</button>` : ""}
           </div>
         `;
       });
-    })
-    .catch(err => console.error(err));
+    });
 });
 
-function addToy(){
+// ADD toy
+function addToy() {
   fetch(API, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -33,5 +35,12 @@ function addToy(){
       price: price.value,
       image: image.value
     })
+  }).then(() => location.reload());
+}
+
+// DELETE toy
+function deleteToy(id) {
+  fetch(`${API}/${id}`, {
+    method: "DELETE"
   }).then(() => location.reload());
 }

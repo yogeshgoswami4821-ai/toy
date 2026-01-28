@@ -1,19 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>Demo | ToyVerse</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
-body{font-family:Poppins;background:#f3eeff;padding:40px}
-.card{background:white;padding:40px;border-radius:24px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:#f3f3f3}
+
+.header{
+  background:#ffd814;
+  padding:25px;
+  font-size:26px;
+  font-weight:700;
+}
+
+.container{
+  max-width:1200px;
+  margin:30px auto;
+  padding:0 20px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,.12);
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:contain;
+}
+
+.back{
+  display:inline-block;
+  margin-bottom:20px;
+  text-decoration:none;
+  color:#007185;
+}
 </style>
 </head>
+
 <body>
 
-<div class="card">
-  <h2>Demo Page</h2>
-  <p>This is a demo page for ToyVerse.</p>
-  <a href="../">← Back</a>
+<div class="header">ToyVerse Demo</div>
+
+<div class="container">
+  <a class="back" href="../">← Back to Home</a>
+
+  <div class="grid">
+    <div class="card">
+      <img src="../assets/toys/demo1.png">
+      <h4>Remote Car Demo</h4>
+      <p>Live speed & control preview</p>
+    </div>
+
+    <div class="card">
+      <img src="../assets/toys/demo2.png">
+      <h4>Flying Plane Demo</h4>
+      <p>360° air movement</p>
+    </div>
+
+    <div class="card">
+      <img src="../assets/toys/demo3.png">
+      <h4>Teddy Quality Demo</h4>
+      <p>Softness & size preview</p>
+    </div>
+  </div>
 </div>
 
 </body>

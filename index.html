@@ -12,16 +12,82 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <style>
-/* ❌ CSS SAME AS YOURS – NO CHANGE */
+/* ⚠️ CSS EXACT SAME AS YOUR CODE */
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
-/* ... rest CSS unchanged ... */
+
+.navbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 60px
+}
+.logo{font-size:28px;font-weight:700}
+.nav-links{display:flex;gap:30px}
+.nav-links a{text-decoration:none;color:#222;font-weight:500}
+.right{display:flex;gap:14px;align-items:center}
+.search{padding:12px 20px;border-radius:30px;border:none;width:240px}
+
+.btn{
+  padding:12px 28px;border-radius:30px;border:none;
+  cursor:pointer;font-weight:600
+}
+.primary{background:#6c55ff;color:white}
+.outline{background:white;color:#6c55ff}
+
+/* HERO */
+.hero{
+  max-width:1200px;margin:40px auto;padding:90px;
+  border-radius:42px;
+  background:radial-gradient(circle at top right,#fff,#f1ecff 65%);
+  display:grid;grid-template-columns:1.2fr 1fr;
+  box-shadow:0 70px 160px rgba(0,0,0,.2);
+  position:relative
+}
+.hero::after{
+  content:"SALE";position:absolute;top:28px;right:-70px;
+  background:linear-gradient(135deg,#ff0000,#b30000);
+  color:#fff;padding:14px 120px;
+  transform:rotate(45deg);font-weight:700
+}
+.hero h1{font-size:60px;line-height:1.05}
+.hero h1 span{display:block;color:red;margin-top:10px}
+.hero p{margin:26px 0;color:#555}
+
+/* CAR */
+.car-wrap{display:flex;justify-content:center;align-items:center;perspective:1200px}
+.car{
+  width:360px;height:220px;background:linear-gradient(135deg,#111,#444);
+  border-radius:28px;position:relative;
+  transform:rotateY(-30deg) rotateX(10deg);
+  animation:float 4s infinite ease-in-out
+}
+@keyframes float{
+  50%{transform:rotateY(-24deg) rotateX(8deg) translateY(-20px)}
+}
+.wheel{
+  width:80px;height:80px;border-radius:50%;
+  background:#111;border:7px solid #00b7ff;
+  position:absolute;bottom:-40px
+}
+.w1{left:30px} .w2{right:30px}
+
+/* 3D */
+#toy3d{
+  max-width:1200px;margin:80px auto;padding:80px;
+  background:white;border-radius:42px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:40px;align-items:center;
+  box-shadow:0 60px 140px rgba(0,0,0,.18)
+}
+.controls button{
+  margin:8px;padding:10px 18px;border-radius:20px;
+  border:none;background:#6c55ff;color:white;cursor:pointer
+}
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR (UNCHANGED) -->
+<!-- NAVBAR -->
 <div class="navbar">
   <div class="logo">NG Toys 🧸</div>
   <div class="nav-links">
@@ -31,17 +97,17 @@ body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
   </div>
   <div class="right">
     <input class="search" placeholder="Search toys...">
-    <button class="btn outline">Login</button>
-    <button class="btn primary">Register</button>
+    <button class="btn outline" onclick="go('login/')">Login</button>
+    <button class="btn primary" onclick="go('register/')">Register</button>
   </div>
 </div>
 
-<!-- HERO (UNCHANGED) -->
+<!-- HERO -->
 <div class="hero">
   <div>
     <h1>Zoom Into Play <span>UP TO 70% OFF</span></h1>
     <p>High-speed RC cars, stunt vehicles & action toys built for pure fun.</p>
-    <button class="btn primary">Shop Now →</button>
+    <button class="btn primary" onclick="go('toys/')">Shop Now →</button>
   </div>
 
   <div class="car-wrap">
@@ -58,12 +124,9 @@ body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
     <h2>Interactive Puzzle Cube</h2>
     <p>Rotate cube faces like a real Rubik’s cube.</p>
 
-    <!-- ✅ PRICE + BUY BUTTON ADDED -->
-    <h3 style="margin-top:15px">Price: ₹999</h3>
-    <button class="btn primary" style="margin-top:10px"
-      onclick="buyToy(999)">
-      Buy Now
-    </button>
+    <!-- ✅ ONLY ADDITION -->
+    <h3>Price: ₹999</h3>
+    <button class="btn primary" onclick="buyToy(999)">Buy Now</button>
 
     <div class="controls">
       <button onclick="rotateFace('x',1)">Rotate Right</button>
@@ -77,6 +140,11 @@ body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
 </div>
 
 <script>
+/* ================= ROUTING ================= */
+function go(path){
+  location.href = path;
+}
+
 /* ================= PAYMENT ================= */
 async function buyToy(amount){
   try{
@@ -91,23 +159,21 @@ async function buyToy(amount){
 
     const order = await res.json();
 
-    const options = {
+    new Razorpay({
       key: "rzp_test_1DP5mmOlF5G5ag",
       amount: order.amount,
       currency: "INR",
       name: "NG Toys",
-      description: "Interactive Puzzle Cube",
+      description: "Puzzle Cube Toy",
       order_id: order.id,
       handler: function (response){
-        alert("✅ Payment Successful\nID: " + response.razorpay_payment_id);
+        alert("Payment Successful ✅\nID: "+response.razorpay_payment_id);
       },
       theme:{ color:"#6c55ff" }
-    };
-
-    new Razorpay(options).open();
+    }).open();
 
   }catch(err){
-    alert("❌ Payment Failed");
+    alert("Payment Failed ❌");
     console.error(err);
   }
 }
@@ -134,9 +200,7 @@ for(let y=-1;y<=1;y++)
 for(let z=-1;z<=1;z++){
   const cube=new THREE.Mesh(
     new THREE.BoxGeometry(size,size,size),
-    new THREE.MeshStandardMaterial({
-      color:colors[Math.floor(Math.random()*6)]
-    })
+    new THREE.MeshStandardMaterial({ color:colors[Math.floor(Math.random()*6)] })
   );
   cube.position.set(x*(size+gap),y*(size+gap),z*(size+gap));
   cubeGroup.add(cube);

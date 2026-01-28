@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
   <title>Login | ToyVerse</title>
   <link rel="stylesheet" href="../style.css">
 </head>
@@ -9,22 +8,17 @@
 
 <div class="card">
   <h2>Admin Login</h2>
-
-  <input id="username" placeholder="Username">
-  <input id="password" type="password" placeholder="Password">
-
-  <button onclick="login()">Login</button>
+  <input id="u" placeholder="Username">
+  <input id="p" type="password" placeholder="Password">
+  <button onclick="go()">Login</button>
 </div>
 
 <script>
-function login(){
-  const u = document.getElementById("username").value;
-  const p = document.getElementById("password").value;
-
-  if(u === "admin" && p === "admin"){
-    window.location.href = "../dashboard/";
+function go(){
+  if(u.value === "admin" && p.value === "admin"){
+    location.href = "../dashboard/";
   } else {
-    alert("Invalid credentials");
+    alert("Wrong login");
   }
 }
 </script>

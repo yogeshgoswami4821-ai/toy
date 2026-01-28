@@ -1,20 +1,20 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f3f0ff;
+  font-family: Poppins, Arial;
+  background: #f5f3ff;
 }
 
 .navbar {
+  background: #5b3df5;
+  color: white;
+  padding: 20px 40px;
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
-  background: #6c4cff;
-  color: white;
 }
 
 .btn {
   background: white;
-  color: #6c4cff;
+  color: #5b3df5;
   padding: 8px 16px;
   border-radius: 6px;
   text-decoration: none;
@@ -28,7 +28,7 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
   gap: 20px;
   padding: 40px;
 }
@@ -36,8 +36,9 @@ body {
 .card {
   background: white;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,.1);
 }
 
 .center {
@@ -47,22 +48,12 @@ body {
   height: 100vh;
 }
 
-input {
+.panel {
+  padding: 40px;
+}
+
+input, button {
   width: 100%;
   padding: 10px;
   margin: 8px 0;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background: #6c4cff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.panel {
-  padding: 40px;
 }

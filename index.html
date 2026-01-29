@@ -12,14 +12,31 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
 
-.navbar{display:flex;justify-content:space-between;align-items:center;padding:22px 60px}
+.navbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 60px
+}
 .logo{font-size:28px;font-weight:700}
 .nav-links{display:flex;gap:30px}
-.nav-links a{text-decoration:none;color:#222;font-weight:500}
+.nav-links a{
+  text-decoration:none;color:#222;font-weight:500;
+  position:relative
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:-4px;
+  width:0;height:2px;background:#6c55ff;transition:.3s
+}
+.nav-links a:hover::after{width:100%}
+
 .right{display:flex;gap:14px;align-items:center}
 .search{padding:12px 20px;border-radius:30px;border:none;width:240px}
 
-.btn{padding:12px 28px;border-radius:30px;border:none;cursor:pointer;font-weight:600;text-decoration:none}
+.btn{
+  padding:12px 28px;border-radius:30px;border:none;
+  cursor:pointer;font-weight:600;text-decoration:none;
+  transition:.3s
+}
+.btn:hover{transform:translateY(-2px)}
 .primary{background:#6c55ff;color:white}
 .outline{background:white;color:#6c55ff}
 
@@ -43,14 +60,16 @@ body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
 .hero p{margin:26px 0;color:#555}
 
 /* CAR */
-.car-wrap{display:flex;justify-content:center;align-items:center;perspective:1200px}
+.car-wrap{display:flex;justify-content:center;align-items:center}
 .car{
-  width:360px;height:220px;background:linear-gradient(135deg,#111,#444);
+  width:360px;height:220px;
+  background:linear-gradient(135deg,#111,#444);
   border-radius:28px;position:relative;
-  transform:rotateY(-30deg) rotateX(10deg);
   animation:float 4s infinite ease-in-out
 }
-@keyframes float{50%{transform:rotateY(-24deg) rotateX(8deg) translateY(-20px)}}
+@keyframes float{
+  50%{transform:translateY(-20px)}
+}
 .wheel{
   width:80px;height:80px;border-radius:50%;
   background:#111;border:7px solid #00b7ff;
@@ -58,7 +77,7 @@ body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
 }
 .w1{left:30px}.w2{right:30px}
 
-/* 3D */
+/* PUZZLE */
 #toy3d{
   max-width:1200px;margin:80px auto;padding:80px;
   background:white;border-radius:42px;
@@ -108,7 +127,7 @@ body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
 <div id="toy3d">
   <div>
     <h2>Interactive Puzzle Cube</h2>
-    <p>Just for demo purpose.</p>
+    <p>Rotate and explore the toy in 3D.</p>
   </div>
   <div id="canvasWrap"></div>
 </div>
@@ -126,16 +145,25 @@ scene.add(new THREE.AmbientLight(0xffffff,.6));
 const light=new THREE.DirectionalLight(0xffffff,1);
 light.position.set(5,5,5);scene.add(light);
 
-const cube=new THREE.Mesh(
-  new THREE.BoxGeometry(1.5,1.5,1.5),
-  new THREE.MeshStandardMaterial({color:0x6c55ff})
-);
-scene.add(cube);
+const cubeGroup=new THREE.Group();
+const size=0.9,gap=0.06;
+const colors=[0xff0000,0x00ff00,0x0000ff,0xffff00,0xff8000,0xffffff];
+
+for(let x=-1;x<=1;x++)
+for(let y=-1;y<=1;y++)
+for(let z=-1;z<=1;z++){
+  const cube=new THREE.Mesh(
+    new THREE.BoxGeometry(size,size,size),
+    new THREE.MeshStandardMaterial({color:colors[Math.random()*6|0]})
+  );
+  cube.position.set(x*(size+gap),y*(size+gap),z*(size+gap));
+  cubeGroup.add(cube);
+}
+scene.add(cubeGroup);
 
 (function animate(){
   requestAnimationFrame(animate);
-  cube.rotation.x+=0.01;
-  cube.rotation.y+=0.01;
+  cubeGroup.rotation.y+=0.004;
   renderer.render(scene,camera);
 })();
 </script>

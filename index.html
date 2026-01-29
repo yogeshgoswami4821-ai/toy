@@ -7,7 +7,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
@@ -86,6 +85,7 @@ nav a{
 
 <body>
 
+<!-- NAVBAR -->
 <nav>
   <div class="logo">NG Toys 🧸</div>
   <div>
@@ -99,6 +99,7 @@ nav a{
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div>
     <h1>Play Smart.<br><span>Feel the Toys.</span></h1>
@@ -106,9 +107,10 @@ nav a{
 
     <a href="./toys/" class="btn">Explore Toys</a>
     <a href="./demo/" class="btn ghost">Live Demo</a>
+
     <br><br>
 
-    <!-- BUY BUTTON -->
+    <!-- DEMO BUY BUTTON -->
     <a href="#" class="btn ghost" onclick="buyToy('Puzzle Cube',499)">
       Buy Puzzle Cube ₹499
     </a>
@@ -118,27 +120,29 @@ nav a{
 </section>
 
 <script>
-/* ================= PAYMENT ================= */
+/* ================= DEMO PAYMENT (NO BACKEND) ================= */
 function buyToy(name, price){
-  var options = {
-    key: "rzp_test_1234567890",   // TEST KEY
-    amount: price * 100,
-    currency: "INR",
-    name: "NG Toys",
-    description: name,
-    handler: function (response){
+  const ok = confirm(
+    "🧸 Toy: " + name +
+    "\n💰 Price: ₹" + price +
+    "\n\nThis is DEMO payment.\nProceed?"
+  );
+
+  if(ok){
+    setTimeout(()=>{
       alert(
-        "✅ Payment Successful!\n\nPayment ID:\n" +
-        response.razorpay_payment_id
+        "✅ Demo Payment Successful!\n\n" +
+        "Toy: " + name + "\n" +
+        "Amount: ₹" + price + "\n\n" +
+        "Order placed successfully 🎉"
       );
-    },
-    theme: { color: "#6c55ff" }
-  };
-  var rzp = new Razorpay(options);
-  rzp.open();
+    },800);
+  }else{
+    alert("❌ Payment Cancelled");
+  }
 }
 
-/* ================= THREE JS ================= */
+/* ================= THREE JS 3D PUZZLE ================= */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(60,1,0.1,1000);
 camera.position.z=4;

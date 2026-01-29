@@ -7,6 +7,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
@@ -88,13 +89,13 @@ nav a{
 <nav>
   <div class="logo">NG Toys 🧸</div>
   <div>
-    <a onclick="go('')">Home</a>
-    <a onclick="go('toys')">Toys</a>
-    <a onclick="go('demo')">Demo</a>
+    <a href="./">Home</a>
+    <a href="./toys/">Toys</a>
+    <a href="./demo/">Demo</a>
   </div>
   <div class="actions">
-    <a class="login" onclick="go('login')">Login</a>
-    <a class="register" onclick="go('register')">Register</a>
+    <a href="./login/" class="login">Login</a>
+    <a href="./register/" class="register">Register</a>
   </div>
 </nav>
 
@@ -102,23 +103,42 @@ nav a{
   <div>
     <h1>Play Smart.<br><span>Feel the Toys.</span></h1>
     <p>Interactive toys with next-gen 3D experience for kids & learners.</p>
-    <a class="btn" onclick="go('toys')">Explore Toys</a>
-    <a class="btn ghost" onclick="go('demo')">Live Demo</a>
+
+    <a href="./toys/" class="btn">Explore Toys</a>
+    <a href="./demo/" class="btn ghost">Live Demo</a>
+    <br><br>
+
+    <!-- BUY BUTTON -->
+    <a href="#" class="btn ghost" onclick="buyToy('Puzzle Cube',499)">
+      Buy Puzzle Cube ₹499
+    </a>
   </div>
+
   <div id="three"></div>
 </section>
 
 <script>
-/* ===== ROUTING FIX (MOST IMPORTANT PART) ===== */
-function basePath(){
-  const path = location.pathname.split("/");
-  return path.length > 2 ? "/" + path[1] + "/" : "/";
-}
-function go(page){
-  location.href = basePath() + page;
+/* ================= PAYMENT ================= */
+function buyToy(name, price){
+  var options = {
+    key: "rzp_test_1234567890",   // TEST KEY
+    amount: price * 100,
+    currency: "INR",
+    name: "NG Toys",
+    description: name,
+    handler: function (response){
+      alert(
+        "✅ Payment Successful!\n\nPayment ID:\n" +
+        response.razorpay_payment_id
+      );
+    },
+    theme: { color: "#6c55ff" }
+  };
+  var rzp = new Razorpay(options);
+  rzp.open();
 }
 
-/* ===== THREE JS ===== */
+/* ================= THREE JS ================= */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(60,1,0.1,1000);
 camera.position.z=4;
@@ -129,11 +149,13 @@ document.getElementById("three").appendChild(renderer.domElement);
 
 scene.add(new THREE.AmbientLight(0xffffff,.8));
 const light=new THREE.DirectionalLight(0xffffff,1);
-light.position.set(5,5,5);scene.add(light);
+light.position.set(5,5,5);
+scene.add(light);
 
-/* Puzzle cube */
+/* Puzzle Cube */
 const group=new THREE.Group();
 const colors=[0xff3c3c,0x6c55ff,0x00c8ff,0xffcc00,0x00ff99,0xffffff];
+
 for(let x=-1;x<=1;x++)
 for(let y=-1;y<=1;y++)
 for(let z=-1;z<=1;z++){

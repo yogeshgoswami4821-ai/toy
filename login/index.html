@@ -1,8 +1,63 @@
 <!DOCTYPE html>
-<html>
-<head><title>Login | NG Toys</title></head>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login | NG Toys</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Poppins;
+  background:linear-gradient(135deg,#cdbbff,#efe9ff);
+}
+.card{
+  background:white;
+  padding:40px;
+  width:340px;
+  border-radius:28px;
+  box-shadow:0 40px 100px rgba(0,0,0,.2);
+}
+h2{text-align:center;margin-bottom:20px}
+input{
+  width:100%;
+  padding:14px;
+  margin:12px 0;
+  border-radius:20px;
+  border:1px solid #ccc;
+}
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#6c55ff;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+a{
+  display:block;
+  text-align:center;
+  margin-top:18px;
+  text-decoration:none;
+  color:#6c55ff;
+}
+</style>
+</head>
+
 <body>
-<h2>Login Page</h2>
-<a href="index.html">← Back</a>
+<div class="card">
+  <h2>Welcome Back 👋</h2>
+  <input type="email" placeholder="Email">
+  <input type="password" placeholder="Password">
+  <button>Login</button>
+  <a href="index.html">← Back to Home</a>
+</div>
 </body>
 </html>

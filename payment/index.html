@@ -1,30 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Payment</title>
+<meta charset="UTF-8">
+<title>Payment | NG Toys</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
-body{font-family:Poppins;background:#f2eeff;display:flex;justify-content:center;align-items:center;height:100vh}
-.card{background:#fff;padding:40px;border-radius:20px;width:340px}
-input,button{width:100%;padding:12px;margin:10px 0}
-button{background:#6c55ff;color:white;border:none;border-radius:20px}
+*{box-sizing:border-box;font-family:Poppins}
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#f2eeff,#d8ccff);
+}
+
+.card{
+  background:#fff;
+  padding:40px;
+  width:360px;
+  border-radius:24px;
+  box-shadow:0 30px 80px rgba(0,0,0,.25);
+}
+
+.card h2{
+  margin-bottom:10px;
+}
+.price{
+  font-size:18px;
+  margin-bottom:20px;
+  color:#6c55ff;
+  font-weight:600;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border-radius:14px;
+  border:1px solid #ddd;
+  outline:none;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:14px;
+  border:none;
+  border-radius:18px;
+  background:#6c55ff;
+  color:white;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#5843ff;
+}
+
+.cancel{
+  text-align:center;
+  margin-top:14px;
+  display:block;
+  color:#666;
+  font-size:14px;
+  text-decoration:none;
+}
 </style>
 </head>
+
 <body>
 
 <div class="card">
-<h2>🧸 Demo Payment</h2>
-<p>Amount: <b>₹499</b></p>
+  <h2>🧸 Demo Payment</h2>
+  <div class="price">Amount: ₹499</div>
 
-<input placeholder="Card / UPI ID">
-<input placeholder="Name on Card">
-<input placeholder="Expiry / OTP">
+  <input placeholder="Card / UPI ID">
+  <input placeholder="Name on Card">
+  <input placeholder="Expiry / OTP">
 
-<button onclick="pay()">Pay Now</button>
+  <button onclick="pay()">Pay Now</button>
+
+  <a href="../" class="cancel">Cancel & go back</a>
 </div>
 
 <script>
+/* SAFETY CHECK */
+if(!localStorage.getItem("loggedIn")){
+  alert("❌ Please login first");
+  location.href="../login/";
+}
+
 function pay(){
-  alert("✅ Demo Payment Successful!\nOrder Placed 🎉");
+  alert("✅ Demo Payment Successful!\n\nOrder Placed 🎉");
   location.href="../";
 }
 </script>

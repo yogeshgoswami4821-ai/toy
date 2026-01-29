@@ -4,75 +4,49 @@
 <meta charset="UTF-8">
 <title>Login | NG Toys</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 body{
-  margin:0;
-  height:100vh;
+  background:linear-gradient(135deg,#cdbbff,#efe9ff);
+  font-family:Poppins;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family:Poppins;
-  background:linear-gradient(135deg,#cdbbff,#efe9ff);
+  height:100vh;
 }
-
-.login-box{
-  background:#fff;
-  padding:30px;
+.box{
+  background:white;
+  padding:40px;
   border-radius:20px;
-  width:300px;
-  box-shadow:0 20px 40px rgba(0,0,0,.15);
+  width:320px;
+  box-shadow:0 40px 100px rgba(0,0,0,.2);
 }
-
-h2{
-  text-align:center;
-  margin-bottom:20px;
-}
-
-input{
+input,button{
   width:100%;
   padding:12px;
-  margin:10px 0;
-  border-radius:20px;
+  margin-top:12px;
+  border-radius:10px;
   border:1px solid #ccc;
 }
-
 button{
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:20px;
   background:#6c55ff;
   color:white;
+  border:none;
   font-weight:600;
   cursor:pointer;
 }
-
-a{
-  display:block;
-  text-align:center;
-  margin-top:15px;
-  text-decoration:none;
-  color:#6c55ff;
-  font-weight:600;
-}
+a{display:block;text-align:center;margin-top:15px}
 </style>
 </head>
 
 <body>
-
-<div class="login-box">
+<div class="box">
   <h2>Login</h2>
-
-  <input type="email" placeholder="Email">
+  <input placeholder="Email">
   <input type="password" placeholder="Password">
-
   <button>Login</button>
-
-  <a href="./index.html">← Back to Home</a>
+  <a href="index.html">← Back to Home</a>
 </div>
-
 </body>
 </html>

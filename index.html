@@ -12,20 +12,14 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
 
-.navbar{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:22px 60px
-}
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:22px 60px}
 .logo{font-size:28px;font-weight:700}
 .nav-links{display:flex;gap:30px}
 .nav-links a{text-decoration:none;color:#222;font-weight:500}
 .right{display:flex;gap:14px;align-items:center}
 .search{padding:12px 20px;border-radius:30px;border:none;width:240px}
 
-.btn{
-  padding:12px 28px;border-radius:30px;border:none;
-  cursor:pointer;font-weight:600;text-decoration:none
-}
+.btn{padding:12px 28px;border-radius:30px;border:none;cursor:pointer;font-weight:600;text-decoration:none}
 .primary{background:#6c55ff;color:white}
 .outline{background:white;color:#6c55ff}
 
@@ -56,15 +50,13 @@ body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
   transform:rotateY(-30deg) rotateX(10deg);
   animation:float 4s infinite ease-in-out
 }
-@keyframes float{
-  50%{transform:rotateY(-24deg) rotateX(8deg) translateY(-20px)}
-}
+@keyframes float{50%{transform:rotateY(-24deg) rotateX(8deg) translateY(-20px)}}
 .wheel{
   width:80px;height:80px;border-radius:50%;
   background:#111;border:7px solid #00b7ff;
   position:absolute;bottom:-40px
 }
-.w1{left:30px} .w2{right:30px}
+.w1{left:30px}.w2{right:30px}
 
 /* 3D */
 #toy3d{
@@ -84,15 +76,15 @@ body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
   <div class="logo">NG Toys 🧸</div>
 
   <div class="nav-links">
-    <a href="./index.html">Home</a>
-    <a href="#toy3d">Toys</a>
-    <a href="#toy3d">Demo</a>
+    <a href="index.html">Home</a>
+    <a href="toys.html">Toys</a>
+    <a href="demo.html">Demo</a>
   </div>
 
   <div class="right">
     <input class="search" placeholder="Search toys...">
-    <a href="./login.html" class="btn outline">Login</a>
-    <a href="./register.html" class="btn primary">Register</a>
+    <a href="login.html" class="btn outline">Login</a>
+    <a href="register.html" class="btn primary">Register</a>
   </div>
 </div>
 
@@ -101,9 +93,7 @@ body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
   <div>
     <h1>Zoom Into Play <span>UP TO 70% OFF</span></h1>
     <p>High-speed RC cars, stunt vehicles & action toys built for pure fun.</p>
-    <button class="btn primary" onclick="alert('Buy feature coming soon')">
-      Shop Now →
-    </button>
+    <a href="toys.html" class="btn primary">Shop Now →</a>
   </div>
 
   <div class="car-wrap">
@@ -118,7 +108,7 @@ body{background:linear-gradient(135deg,#cdbbff,#efe9ff)}
 <div id="toy3d">
   <div>
     <h2>Interactive Puzzle Cube</h2>
-    <p>Rotate cube like a real Rubik’s cube.</p>
+    <p>Just for demo purpose.</p>
   </div>
   <div id="canvasWrap"></div>
 </div>
@@ -136,25 +126,16 @@ scene.add(new THREE.AmbientLight(0xffffff,.6));
 const light=new THREE.DirectionalLight(0xffffff,1);
 light.position.set(5,5,5);scene.add(light);
 
-const cubeGroup=new THREE.Group();
-const size=0.9,gap=0.06;
-const colors=[0xff0000,0x00ff00,0x0000ff,0xffff00,0xff8000,0xffffff];
-
-for(let x=-1;x<=1;x++)
-for(let y=-1;y<=1;y++)
-for(let z=-1;z<=1;z++){
-  const cube=new THREE.Mesh(
-    new THREE.BoxGeometry(size,size,size),
-    new THREE.MeshStandardMaterial({color:colors[Math.random()*6|0]})
-  );
-  cube.position.set(x*(size+gap),y*(size+gap),z*(size+gap));
-  cubeGroup.add(cube);
-}
-scene.add(cubeGroup);
+const cube=new THREE.Mesh(
+  new THREE.BoxGeometry(1.5,1.5,1.5),
+  new THREE.MeshStandardMaterial({color:0x6c55ff})
+);
+scene.add(cube);
 
 (function animate(){
   requestAnimationFrame(animate);
-  cubeGroup.rotation.y+=0.004;
+  cube.rotation.x+=0.01;
+  cube.rotation.y+=0.01;
   renderer.render(scene,camera);
 })();
 </script>

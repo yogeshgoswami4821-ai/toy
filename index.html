@@ -28,6 +28,7 @@ nav a{
   text-decoration:none;
   color:#222;
   font-weight:500;
+  cursor:pointer;
 }
 .actions a{
   padding:10px 22px;
@@ -87,13 +88,13 @@ nav a{
 <nav>
   <div class="logo">NG Toys 🧸</div>
   <div>
-    <a href="/">Home</a>
-    <a href="/toys/">Toys</a>
-    <a href="/demo/">Demo</a>
+    <a onclick="go('')">Home</a>
+    <a onclick="go('toys')">Toys</a>
+    <a onclick="go('demo')">Demo</a>
   </div>
   <div class="actions">
-    <a href="/login/" class="login">Login</a>
-    <a href="/register/" class="register">Register</a>
+    <a class="login" onclick="go('login')">Login</a>
+    <a class="register" onclick="go('register')">Register</a>
   </div>
 </nav>
 
@@ -101,13 +102,23 @@ nav a{
   <div>
     <h1>Play Smart.<br><span>Feel the Toys.</span></h1>
     <p>Interactive toys with next-gen 3D experience for kids & learners.</p>
-    <a href="/toys/" class="btn">Explore Toys</a>
-    <a href="/demo/" class="btn ghost">Live Demo</a>
+    <a class="btn" onclick="go('toys')">Explore Toys</a>
+    <a class="btn ghost" onclick="go('demo')">Live Demo</a>
   </div>
   <div id="three"></div>
 </section>
 
 <script>
+/* ===== ROUTING FIX (MOST IMPORTANT PART) ===== */
+function basePath(){
+  const path = location.pathname.split("/");
+  return path.length > 2 ? "/" + path[1] + "/" : "/";
+}
+function go(page){
+  location.href = basePath() + page;
+}
+
+/* ===== THREE JS ===== */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(60,1,0.1,1000);
 camera.position.z=4;

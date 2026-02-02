@@ -16,7 +16,7 @@ body{
   background:linear-gradient(135deg,#efe7ff,#faf8ff);
 }
 
-/* ================= NAVBAR ================= */
+/* NAV */
 nav{
   display:flex;
   justify-content:space-between;
@@ -24,9 +24,6 @@ nav{
   padding:18px 50px;
   background:#fff;
   box-shadow:0 8px 30px rgba(0,0,0,.08);
-  position:sticky;
-  top:0;
-  z-index:10;
 }
 
 .logo{
@@ -38,33 +35,13 @@ nav{
 .nav-center{
   display:flex;
   align-items:center;
-  gap:26px;
+  gap:22px;
 }
 
 .nav-center a{
   text-decoration:none;
   color:#333;
   font-weight:500;
-}
-
-.search-box{
-  position:relative;
-}
-
-.search-box input{
-  padding:10px 40px 10px 18px;
-  border-radius:30px;
-  border:1px solid #ddd;
-  outline:none;
-  width:220px;
-}
-
-.search-box span{
-  position:absolute;
-  right:14px;
-  top:50%;
-  transform:translateY(-50%);
-  color:#777;
 }
 
 .actions a{
@@ -75,17 +52,10 @@ nav{
   margin-left:10px;
 }
 
-.login{
-  background:#f2eeff;
-  color:#6c55ff;
-}
+.login{background:#f2eeff;color:#6c55ff}
+.register{background:#6c55ff;color:#fff}
 
-.register{
-  background:#6c55ff;
-  color:white;
-}
-
-/* ================= HERO ================= */
+/* HERO */
 .hero{
   max-width:1200px;
   margin:50px auto;
@@ -97,13 +67,12 @@ nav{
   gap:40px;
   box-shadow:0 60px 160px rgba(0,0,0,.18);
   position:relative;
-  overflow:hidden;
 }
 
 .hero::after{
   content:"SALE";
   position:absolute;
-  top:24px;
+  top:22px;
   right:-60px;
   background:#ff3c3c;
   color:white;
@@ -112,20 +81,9 @@ nav{
   font-weight:700;
 }
 
-.hero h1{
-  font-size:54px;
-  line-height:1.1;
-}
-
-.hero h1 span{
-  color:#ff3c3c;
-}
-
-.hero p{
-  margin:22px 0;
-  color:#555;
-  font-size:16px;
-}
+.hero h1{font-size:54px;line-height:1.1}
+.hero h1 span{color:#ff3c3c}
+.hero p{margin:22px 0;color:#555}
 
 .hero .btn{
   display:inline-block;
@@ -136,32 +94,44 @@ nav{
   color:white;
   text-decoration:none;
   font-weight:600;
-  transition:.3s;
 }
 
-.hero .btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 12px 30px rgba(108,85,255,.35);
-}
+.hero .ghost{background:#f2eeff;color:#6c55ff}
 
-.hero .ghost{
-  background:#f2eeff;
-  color:#6c55ff;
-}
-
-/* ================= 3D ================= */
+/* 3D */
 #three{
   width:100%;
   height:360px;
   background:radial-gradient(circle at top,#ffffff,#f3efff);
   border-radius:28px;
 }
+
+/* ORDER SECTION */
+.orders{
+  max-width:1200px;
+  margin:40px auto;
+  padding:40px;
+  background:white;
+  border-radius:30px;
+  box-shadow:0 40px 100px rgba(0,0,0,.12);
+}
+
+.orders h2{
+  margin-bottom:20px;
+}
+
+.order-card{
+  padding:18px;
+  border-radius:16px;
+  background:#f5f2ff;
+  margin-bottom:14px;
+}
 </style>
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 <nav>
   <div class="logo">NG Toys 🧸</div>
 
@@ -169,12 +139,8 @@ nav{
     <a href="./">Home</a>
     <a href="./toys/">Toys</a>
     <a href="./demo/">Demo</a>
-
-    <!-- SEARCH -->
-    <div class="search-box">
-      <input placeholder="Search toys..." onkeyup="searchToy(this.value)">
-      <span>🔍</span>
-    </div>
+    <a href="#orders">Orders</a>
+    <a href="#" onclick="trackOrder()">Track Order</a>
   </div>
 
   <div class="actions">
@@ -183,7 +149,7 @@ nav{
   </div>
 </nav>
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 <section class="hero">
   <div>
     <h1>
@@ -192,8 +158,8 @@ nav{
     </h1>
 
     <p>
-      Discover premium card games, puzzles & interactive toys
-      designed for fun, learning and family time.
+      Discover interactive toys with immersive 3D experience
+      and smart order tracking.
     </p>
 
     <a href="./toys/" class="btn">Explore Toys</a>
@@ -206,33 +172,85 @@ nav{
     </a>
   </div>
 
-  <!-- 3D PUZZLE (UNCHANGED) -->
   <div id="three"></div>
 </section>
 
-<script>
-/* ================= SEARCH (FRONTEND DEMO) ================= */
-function searchToy(val){
-  if(!val) return;
-  alert("🔍 Searching for: " + val + "\n\n(Search backend later जोड़ सकते हो)");
-}
+<!-- ORDER HISTORY -->
+<section class="orders" id="orders">
+  <h2>📦 Order History</h2>
+  <div id="orderList">
+    <p>No orders yet.</p>
+  </div>
+</section>
 
-/* ================= LOGIN CHECK + BUY ================= */
+<script>
+/* BUY + SAVE ORDER */
 function buyToy(name, price){
   if(!localStorage.getItem("loggedIn")){
-    alert("❌ Please login or register to continue");
+    alert("❌ Please login to place order");
     location.href="./login/";
     return;
   }
 
-  alert(
-    "🧸 Order Placed (Demo)\n\n" +
-    "Toy: " + name + "\n" +
-    "Price: ₹" + price
-  );
+  const order={
+    id:"ORD"+Math.floor(Math.random()*100000),
+    name,
+    price,
+    status:"Processing"
+  };
+
+  const orders=JSON.parse(localStorage.getItem("orders")||"[]");
+  orders.push(order);
+  localStorage.setItem("orders",JSON.stringify(orders));
+
+  alert("✅ Order Placed!\nOrder ID: "+order.id);
+  renderOrders();
 }
 
-/* ================= THREE JS (UNCHANGED PUZZLE) ================= */
+/* RENDER ORDERS */
+function renderOrders(){
+  const orders=JSON.parse(localStorage.getItem("orders")||"[]");
+  const box=document.getElementById("orderList");
+
+  if(orders.length===0){
+    box.innerHTML="<p>No orders yet.</p>";
+    return;
+  }
+
+  box.innerHTML="";
+  orders.forEach(o=>{
+    box.innerHTML+=`
+      <div class="order-card">
+        <b>${o.name}</b><br>
+        Order ID: ${o.id}<br>
+        Amount: ₹${o.price}<br>
+        Status: ${o.status}
+      </div>
+    `;
+  });
+}
+
+/* TRACK ORDER */
+function trackOrder(){
+  const id=prompt("Enter Order ID");
+  if(!id) return;
+
+  const orders=JSON.parse(localStorage.getItem("orders")||"[]");
+  const o=orders.find(x=>x.id===id);
+
+  if(o){
+    alert(
+      "📦 Order Found\n\n"+
+      "Product: "+o.name+"\n"+
+      "Amount: ₹"+o.price+"\n"+
+      "Status: "+o.status
+    );
+  }else{
+    alert("❌ Order not found");
+  }
+}
+
+/* THREE JS PUZZLE (UNCHANGED) */
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(60,1,0.1,1000);
 camera.position.z=4;
@@ -266,6 +284,7 @@ scene.add(group);
   group.rotation.y+=0.01;
   renderer.render(scene,camera);
 })();
+renderOrders();
 </script>
 
 </body>

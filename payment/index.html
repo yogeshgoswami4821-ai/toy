@@ -4,25 +4,33 @@
 <meta charset="UTF-8">
 <title>Payment | NG Toys</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;height:100vh;
-  display:flex;align-items:center;justify-content:center;
-  font-family:Poppins;
+  display:flex;justify-content:center;align-items:center;
   background:linear-gradient(135deg,#6c55ff,#9f8bff);
+  font-family:Poppins;
 }
 .card{
-  background:#fff;padding:40px;width:360px;
-  border-radius:26px;text-align:center;
-  box-shadow:0 40px 120px rgba(0,0,0,.3);
+  background:white;padding:40px;
+  width:360px;border-radius:26px;
+  box-shadow:0 40px 100px rgba(0,0,0,.25);
+}
+h2{text-align:center;margin-bottom:10px}
+p{text-align:center;color:#555}
+input{
+  width:100%;padding:14px;
+  margin:10px 0;border-radius:16px;
+  border:1px solid #ddd;
 }
 button{
-  margin-top:20px;width:100%;padding:14px;
+  width:100%;padding:14px;
   border:none;border-radius:20px;
-  background:#6c55ff;color:#fff;
-  font-size:16px;font-weight:600;
+  background:#6c55ff;color:white;
+  font-weight:600;font-size:16px;
   cursor:pointer;
 }
 </style>
@@ -31,37 +39,28 @@ button{
 <body>
 
 <div class="card">
-  <h2>Confirm Payment 💳</h2>
+  <h2>Secure Payment 🔒</h2>
   <p id="info"></p>
+
+  <input placeholder="Card / UPI Name">
+  <input placeholder="Mobile Number">
+  <input placeholder="Card / UPI ID">
+
   <button onclick="pay()">Pay Now</button>
 </div>
 
 <script>
-if(!localStorage.getItem("isLoggedIn")){
-  location.href="../login/";
-}
+const name=localStorage.getItem("pay_name");
+const price=localStorage.getItem("pay_price");
 
-const name = localStorage.getItem("toyName");
-const price = localStorage.getItem("toyPrice");
-document.getElementById("info").innerHTML =
-  `Toy: <b>${name}</b><br>Amount: ₹${price}`;
+document.getElementById("info").innerText=
+  name+" | Amount ₹"+price;
 
 function pay(){
-  const orderId = "NG"+Date.now();
-  const orders = JSON.parse(localStorage.getItem("orders") || "[]");
-
-  orders.push({
-    id: orderId,
-    toy: name,
-    price: price,
-    status: "Processing",
-    date: new Date().toLocaleString()
-  });
-
-  localStorage.setItem("orders", JSON.stringify(orders));
-
-  alert("✅ Payment Successful\nOrder ID: "+orderId);
-  location.href="../orders/";
+  alert("✅ Demo Payment Successful!\n\nThank you for shopping 🧸");
+  localStorage.removeItem("pay_name");
+  localStorage.removeItem("pay_price");
+  location.href="../";
 }
 </script>
 
